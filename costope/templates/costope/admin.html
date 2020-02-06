@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% load djmoney %}
+
+{% block title %}
+    Costos Administrativos
+{% endblock title %}
+
+{% block content %}
+
+    <div class="tabs tabs_default">
+        <ul class="horizontal">
+            <li class="active"><a href="#tab-1">Materia Prima</a></li>
+            <li><a href="#tab-2">Mano de obra Directa</a></li>
+            <li><a href="#tab-3">Materiales Directos</a></li>
+            <li><a href="#tab-4">Servicios Directos</a></li>
+        </ul>
+        <div id="tab-1" style="display: block;">
+                <div class="card">
+                    <div class="card-header d-flex">
+                        <h4 class="my-2 mr-auto">Materia Prima</h4>
+                        <a href="{% url 'operativos:materia' %}" class="btn btn-succes">Agregar Materia Prima</a>
+                    </div>
+                    <div class="card-body">                    
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Materia</th>
+                                    <th>Costo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for prima in materia_prima %}        
+                                <tr>
+                                    <td scope="row">{{prima.materia}}</td>
+                                    <td>{{prima.costo}}</td>
+                                </tr>
+                            {% endfor %}
+                                <tr>
+                                    <td scope="row"><b>Total</b></td>
+                                    <td>
+                                        {% if total_prima %}
+                                            {% money_localize total_prima 'BSS' %}
+                                        {% endif %}
+    
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>                
+                </div>
+        </div>
+        <div id="tab-2" style="display: none;">
+                <div class="card">
+                    <div class="card-header card-header d-flex">
+                        <h4 class="my-2 mr-auto">Mano de obra Directa</h4>
+                        <a href="{% url 'operativos:mano' %}" class="btn btn-succes">Agregar Mano de Obra</a>
+                    </div>
+                    <div class="card-body">                    
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Cargo</th>
+                                    <th>Cantidad</th>
+                                    <th>Salario</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for a in mano %}        
+                                <tr>
+                                    <td scope="row">{{a.cargo}}</td>
+                                    <td>{{a.cantidad}}</td>
+                                    <td>{{a.salario}}</td>
+                                </tr>
+                            {% endfor %}
+                                <tr>
+                                    <td scope="row"><b>Total</b></td>
+                                    <td></td>
+                                    <td>
+                                        {% if total %}
+                                            {% money_localize total 'BSS' %}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </div>
+        <div id="tab-3" style="display: none;">
+            <div class="card">
+                <div class="card-header card-header d-flex">
+                        <h4 class="my-2 mr-auto">Materiales Directos</h4>
+                        <a href="{% url 'operativos:material' %}" class="btn btn-succes">Agregar Materiales</a>
+                </div>      
+                <div class="card-body">                
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Material</th>
+                                <th>Costo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for material in materiales %}        
+                            <tr>
+                                <td scope="row">{{material.material}}</td>
+                                <td>{{material.costo}}</td>
+                            </tr>
+                        {% endfor %}
+                            <tr>
+                                <td scope="row"><b>Total</b></td>
+                                {% if total_materiales %}
+                                    <td>{% money_localize total_materiales 'BSS' %}</td>
+                                {% endif %}
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="tab-4" style="display: none;">
+            <div class="card">
+                <div class="card-header card-header d-flex">
+                        <h4 class="my-2 mr-auto">Servicios Directos</h4>
+                        <a href="{% url 'operativos:servicios' %}" class="btn btn-succes">Agregar Servicios</a>
+                </div>         
+                <div class="card-body">                
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Servicio</th>
+                                <th>Costo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for servicio in servicios %}        
+                            <tr>
+                                <td scope="row">{{servicio.servicio}}</td>
+                                <td>{{servicio.costo}}</td>
+                            </tr>
+                        {% endfor %}
+                            <tr>
+                                <td scope="row"><b>Total</b></td>
+                                <td>
+                                {% if total_servicios %}
+                                    {% money_localize total_servicios 'BSS' %}
+                                {% endif %}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="card py-4 px-3 ">
+    {% if total_completo %}
+        <b class="h3 m-0">Total de Gasto Operativos: {% money_localize total_completo 'BSS' %}</b> 
+    {% else %}
+        <b class="h3 m-0">No hay Registro</b> 
+    {% endif %}
+    </div>
+    
+{% endblock content %}

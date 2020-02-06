@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load djmoney %}
+
+{% block title %}
+    Costos Administrativos
+{% endblock title %}
+
+{% block content %}
+
+<div class="tabs tabs_default">
+    <ul class="horizontal">
+        <li class="active"><a href="#tab-1">Mano de obra Indirecta</a></li>
+        <li><a href="#tab-2">Materiales Indirectos</a></li>
+        <li><a href="#tab-3">Servicios Indirectos</a></li>
+    </ul>
+
+    <div id="tab-1" style="display: block;">
+        <div class="card">
+            <div class="card-header d-flex">
+                <h4 class="my-2 mr-auto">Mano de obra Indirecta</h4>
+                <a href="{% url 'administrativo:mano' %}" class="btn btn-succes">
+                Agregar Mano de obra
+                </a>
+            </div>
+            <div class="card-body">        
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Cargo</th>
+                            <th>Cantidad</th>
+                            <th>Salario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for a in mano %}        
+                        <tr>
+                            <td scope="row">{{a.cargo}}</td>
+                            <td>{{a.cantidad}}</td>
+                            <td>{{a.salario}}</td>
+                        </tr>
+                    {% endfor %}
+                        <tr>
+                            <td scope="row"><b>Total</b></td>
+                            <td></td>
+                            <td>{% money_localize total 'BSS' %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="tab-2" style="display: block;">
+        <div class="card">
+            <div class="card-header d-flex">
+                <h4 class="my-2 mr-auto">Materiales Indirectos</h4>
+                <a href="{% url 'administrativo:materiales' %}" class="btn btn-succes">
+                Agregar Materiales
+                </a>
+            </div>
+            <div class="card-body">            
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Material</th>
+                            <th>Costo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for material in materiales %}        
+                        <tr>
+                            <td scope="row">{{material.material}}</td>
+                            <td>{{material.costo}}</td>
+                        </tr>
+                    {% endfor %}
+                        <tr>
+                            <td scope="row"><b>Total</b></td>
+                            <td>{% money_localize total_materiales 'BSS' %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>       
+        </div>
+    </div>
+
+    <div id="tab-3" style="display: block;">
+        <div class="card">
+            <div class="card-header d-flex">
+                <h4 class="my-2 mr-auto">Servicios Indirectos</h4>
+                <a href="{% url 'administrativo:servicios' %}" class="btn btn-succes">
+                Agregar Servicios
+                </a>
+            </div>
+            <div class="card-body">            
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Servicio</th>
+                            <th>Costo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for servicio in servicios %}        
+                        <tr>
+                            <td scope="row">{{servicio.servicio}}</td>
+                            <td>{{servicio.costo}}</td>
+                        </tr>
+                    {% endfor %}
+                        <tr>
+                            <td scope="row"><b>Total</b></td>
+                            <td>{% money_localize total_servicios 'BSS' %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="card py-4 px-3 ">
+        <b class="h3 m-0">Total de Gasto Operativos: {% money_localize total_completo 'BSS' %}</b> 
+    </div>
+{% endblock content %}

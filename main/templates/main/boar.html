@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+{% load djmoney %}
+
+{% block title %}
+Dash Board
+{% endblock title %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-body ">
+                <div class="row">
+                    <div class="col-12">
+                    <div class="numbers">
+                        <p class="card-category">Total</p>
+                        <p class="card-title" style="font-size: .7em;">
+                            {% if total_operativo %}
+                                {% money_localize total_operativo 'BSS' %}
+                            {% endif %}
+
+                        </p><p>
+                    </p></div>
+                    </div>
+                </div>
+                </div>
+                <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                    <i class="fa fa-refresh"></i> Gastos Operativos
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-body ">
+                <div class="row">
+                    <div class="col-12">
+                    <div class="numbers">
+                        <p class="card-category">Total</p>
+                        <p class="card-title" style="font-size: .7em;">
+                            {% if total_admistrativo %}
+                                {% money_localize total_admistrativo 'BSS' %}
+                            {% endif %}
+                        </p><p>
+                    </p></div>
+                    </div>
+                </div>
+                </div>
+                <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                    <i class="fa fa-refresh"></i> Gastos Administrativos
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-body ">
+                <div class="row">
+                    <div class="col-12">
+                    <div class="numbers">
+                        <p class="card-category">Total</p>
+                        <p class="card-title" style="font-size: .7em;">{% money_localize total_suma 'BSS' %}
+                        </p><p>
+                    </p></div>
+                    </div>
+                </div>
+                </div>
+                <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                    <i class="fa fa-refresh"></i> Costo Total
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-body ">
+                <div class="row">
+                    <div class="col-12">
+                    <div class="numbers">
+                        <p class="card-category">Total</p>
+                        <p class="card-title" style="font-size: .7em;">
+                            {% if total_suma %}
+                                {% money_localize costo_unitario 'BSS' %}
+                            {% endif %}
+                        </p><p>
+                    </p></div>
+                    </div>
+                </div>
+                </div>
+                <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                    <i class="fa fa-refresh"></i> Costo Unitario
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-body ">
+                <div class="row">
+                    <div class="col-12">
+                    <div class="numbers">
+                        <p class="card-category">Total</p>
+                        <p class="card-title" style="font-size: .7em;">
+                            {% if total_suma %}
+                                {% money_localize marge_de_ganancias 'BSS' %}
+                            {% endif %}
+                        </p><p>
+                    </p></div>
+                    </div>
+                </div>
+                </div>
+                <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                    <i class="fa fa-refresh"></i> Margen de ganancias 30%
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-body ">
+                <div class="row">
+                    <div class="col-12">
+                    <div class="numbers">
+                        <p class="card-category">Total</p>
+                        <p class="card-title" style="font-size: .7em;">
+                            {% if total_suma %}
+                                {% money_localize kilogramo 'BSS' %}
+                            {% endif %}
+                        </p><p>
+                    </p></div>
+                    </div>
+                </div>
+                </div>
+                <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                    <i class="fa fa-refresh"></i> Precio de  Kilogramo
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-body ">
+                <div class="row">
+                    <div class="col-12">
+                    <div class="numbers">
+                        <p class="card-category">Total</p>
+                        <p class="card-title" style="font-size: .7em;">
+                            {% if total_suma %}
+                                {% money_localize p_500 'BSS' %}
+                            {% endif %}
+                        </p><p>
+                    </p></div>
+                    </div>
+                </div>
+                </div>
+                <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                    <i class="fa fa-refresh"></i> Precio de  500g
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-body ">
+                <div class="row">
+                    <div class="col-12">
+                    <div class="numbers">
+                        <p class="card-category">Total</p>
+                        <p class="card-title" style="font-size: .7em;">
+                            {% if total_suma %}
+                                {% money_localize p_250 'BSS' %}
+                            {% endif %}
+                        </p><p>
+                    </p></div>
+                    </div>
+                </div>
+                </div>
+                <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                    <i class="fa fa-refresh"></i> Precio de  250g
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
